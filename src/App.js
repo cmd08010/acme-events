@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import EventList from "./Components/EventList"
+import CreateEvent from "./Components/CreateEvent"
+import "./App.css"
+import "bootstrap/dist/css/bootstrap.css"
+import moment from "moment"
+
+const today = moment()
+
+const events = [
+  // { format events like this:
+  //   title: "text",
+  //   date: "test date",
+  //   content: "test cont"
+  //   pastDate: "not pastdate"
+  // }
+]
 
 function App() {
+  let [eventList, setEventList] = useState(events)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="banner">All My Events</h1>
+
+      <div className="App">
+        <CreateEvent
+          eventList={eventList}
+          setEventList={setEventList}
+          today={today}
+        />
+        <EventList
+          eventList={eventList}
+          setEventList={setEventList}
+          today={today}
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
